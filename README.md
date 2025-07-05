@@ -11,3 +11,6 @@ Search functionality
 Responsive UI for mobile and web
 Theming and animations
 Offline support and caching
+
+
+© 2025 Luohino • TalkTwirl. All rights reserved. UI and name protected under MIT License + custom terms.
