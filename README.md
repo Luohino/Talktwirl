@@ -1,35 +1,57 @@
-<<<<<<< HEAD
-# talktwirl
+# TalkTwirl Web App 🌐
 
-A new Flutter project.
+**TalkTwirl** is a modern, feature-rich social media application built with Flutter, now available on the web!
 
-## Getting Started
+## 🚀 Live Demo
 
-This project is a starting point for a Flutter application.
+**Try it now**: [https://luohino.github.io/Talktwirl/](https://luohino.github.io/Talktwirl/)
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ Features
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 💬 **Real-time Messaging** - Chat with friends instantly
+- 📸 **Post Sharing** - Share photos and videos  
+- 👥 **Social Network** - Follow users and build connections
+- 🔔 **Live Notifications** - Stay updated in real-time
+- 📱 **Responsive Design** - Works on all devices
+- 🎨 **Modern UI** - Beautiful dark theme interface
+- 🔄 **Progressive Web App** - Install like a native app
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
+## 📱 Mobile Version
 
-Talktwirl is a modern, feature-rich social media application built with Flutter. It leverages Firebase, Supabase, and a suite of powerful packages to deliver a seamless, cross-platform experience for sharing posts, messaging, and connecting with others.
-User authentication (Email, Google Sign-In)
-Real-time chat and messaging
-Post creation, editing, and deletion
-Image and video uploads
-User profiles with followers/following
-Notifications
-Saved posts
-Search functionality
-Responsive UI for mobile and web
-Theming and animations
-Offline support and caching
+Download the Android APK: [TalkTwirl v2.0.0](https://github.com/Luohino/Talktwirl/releases/tag/v2.0.0)
 
+## 🛠️ Tech Stack
 
-© 2025 Luohino • TalkTwirl. All rights reserved. UI and name protected under MIT License + custom terms.
->>>>>>> 745043f6047485056b2c7e471b5ae8a815310172
+- **Frontend**: Flutter Web
+- **Backend**: Supabase
+- **Real-time**: WebSocket connections
+- **Storage**: Cloud storage for media
+
+## 💻 Browser Support
+
+- ✅ Chrome (Recommended)
+- ✅ Firefox  
+- ✅ Safari
+- ✅ Edge
+- ✅ Mobile browsers
+
+## 🎯 What's New in v2.0.0
+
+- ✅ Fixed duplicate message bugs
+- ✅ Enhanced performance optimizations  
+- ✅ Improved responsive design
+- ✅ Better real-time synchronization
+- ✅ Reduced bundle size for faster loading
+
+## 📞 Support
+
+- **Issues**: [Report bugs](https://github.com/Luohino/Talktwirl/issues)
+- **Web App**: [luohino.github.io/Talktwirl](https://luohino.github.io/Talktwirl/)
+
+## 📜 License
+
+© 2025 Luohino • TalkTwirl. All rights reserved.
+
+---
+
+**Start connecting with TalkTwirl today!** 🎉
