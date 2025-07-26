@@ -121,7 +121,7 @@ class _PersonalMessageScreenState extends State<PersonalMessageScreen> {
     }
   }
 
-  void _submitMessage(String text) async {
+  Future<void> _submitMessage(String text) async {
     if (text.isEmpty || _currentUserId.isEmpty || _otherUserId.isEmpty) return;
 
     final optimisticMessageId = 'temp_${DateTime.now().millisecondsSinceEpoch}';
