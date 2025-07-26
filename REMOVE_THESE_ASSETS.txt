@@ -1,7 +1,0 @@
-# Unused asset files to remove for size optimization
-assets/Logo/Talktwirl Logo +icon (top center).png
-assets/More Icon.png
-assets/Profile photo button.png
-assets/talktwirl post button.png
-assets/Twirls_button.png
-assets/icons/README.txt

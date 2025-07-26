@@ -33,13 +33,25 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Web build artifacts (keep only docs/ for GitHub Pages)
+/web/
+*.js.map
+.last_build_id
+
+# Android build artifacts
+/android/
+*.apk
+*.aab
+
 # Symbolication related
 app.*.symbols
 
 # Obfuscation related
 app.*.map.json
 
-# Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+# Build scripts
+*.bat
+*.sh
+
+# Temporary assets
+REMOVE_THESE_ASSETS.txt
