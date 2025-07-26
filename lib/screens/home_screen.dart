@@ -55,6 +55,7 @@ class HomeScreenBodyState extends State<HomeScreenBody> with RouteAware, Widgets
   // For real posts from Supabase
   List<Map<String, dynamic>> _posts = [];
   bool _isLoadingPosts = true;
+  bool _isAuthenticating = true;
 
   TextEditingController _searchController = TextEditingController();
   bool _showSearchPopup = false;
@@ -355,14 +356,50 @@ class HomeScreenBodyState extends State<HomeScreenBody> with RouteAware, Widgets
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    _fetchPosts();
-    _checkUserSuspended();
-    _loadSavedPosts();
-    _ensureProfileLoaded();
-    _setupMessagesSubscription();
-    _fetchUnseenNotificationCount();
-    _prefetchAllUserProfiles();
-    _cacheProfilesAndMessages();
+    _initializeApp();
+  }
+
+  Future<void> _initializeApp() async {
+    try {
+      // Check authentication first
+      final isAuthenticated = await SupabaseService.ensureAuthenticated();
+      
+      if (!isAuthenticated) {
+        if (mounted) {
+          Navigator.pushReplacementNamed(context, '/login');
+          return;
+        }
+      }
+      
+      // If authenticated, proceed with initialization
+      setState(() {
+        _isAuthenticating = false;
+      });
+      
+      await Future.wait([
+        _fetchPosts(),
+        _checkUserSuspended(),
+        _loadSavedPosts(),
+        _ensureProfileLoaded(),
+        _fetchUnseenNotificationCount(),
+        _prefetchAllUserProfiles(),
+        _cacheProfilesAndMessages(),
+      ]);
+      
+      // Setup real-time subscriptions after initial data load
+      _setupMessagesSubscription();
+      
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          _isAuthenticating = false;
+          _isLoadingPosts = false;
+        });
+        
+        // Show error or redirect to login
+        Navigator.pushReplacementNamed(context, '/login');
+      }
+    }
   }
 
   Future<void> _fetchPosts() async {
@@ -723,6 +760,23 @@ class HomeScreenBodyState extends State<HomeScreenBody> with RouteAware, Widgets
 
   @override
   Widget build(BuildContext context) {
+    // Show loading screen while authenticating
+    if (_isAuthenticating) {
+      return const Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircularProgressIndicator(color: Colors.white),
+              SizedBox(height: 20),
+              Text('Authenticating...', style: TextStyle(color: Colors.white70)),
+            ],
+          ),
+        ),
+      );
+    }
+    
     // Only show posts with category 'Post' in the feed
     final imagePosts = _posts.where((p) => (p['category'] == 'Post')).toList();
     return GestureDetector(

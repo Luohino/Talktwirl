@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../core/supabase_client.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = '/';
@@ -14,14 +15,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1), () async {
-      final session = Supabase.instance.client.auth.currentSession;
-      if (session != null && session.user != null) {
-        Navigator.pushReplacementNamed(context, '/home');
-      } else {
+    _checkAuthenticationState();
+  }
+
+  Future<void> _checkAuthenticationState() async {
+    // Wait a moment for the splash screen to show
+    await Future.delayed(const Duration(milliseconds: 1500));
+    
+    try {
+      // Check if user is authenticated and refresh session if needed
+      final isAuthenticated = await SupabaseService.ensureAuthenticated();
+      
+      if (mounted) {
+        if (isAuthenticated) {
+          Navigator.pushReplacementNamed(context, '/home');
+        } else {
+          Navigator.pushReplacementNamed(context, '/login');
+        }
+      }
+    } catch (e) {
+      if (mounted) {
         Navigator.pushReplacementNamed(context, '/login');
       }
-    });
+    }
   }
 
   @override
